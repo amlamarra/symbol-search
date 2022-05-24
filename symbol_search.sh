@@ -9,7 +9,7 @@ if [ "$#" -ne 2 ]; then
     exit 1
 fi
 
-search_dir=$HOME/E900/root
+search_dir=./root
 
 for file in $(readelf -d "$1" | grep Shared | cut -d\[ -f2 | cut -d\] -f1); do
     if find "$search_dir" -name "$file" -type f -exec readelf -s {} 2>/dev/null + | grep "$2" >/dev/null; then
